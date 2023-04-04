@@ -67,7 +67,7 @@ ConQuR <- function(tax_tab, batchid, covariates,
     #### by simple quantile-quantile matching is chosen ####
 
     ### correct each of the taxa ###
-    tax_new = foreach (ll=1:ncol(tax_tab), .combine=cbind) %do%{
+    tax_new = foreach (ll=1:ncol(tax_tab), .combine=cbind) %dopar%{
       y = as.numeric( tax_tab[, ll] )
       simple_QQ(y=y, batchid=batchid, batch_ref=batch_ref, taus=taus)
     }
@@ -88,7 +88,7 @@ ConQuR <- function(tax_tab, batchid, covariates,
     X_span_correct[, grep( "batchid", colnames(X_span_correct) )] = 0
 
     ### correct each of the taxa ###
-    tax_new = foreach (ll=1:ncol(tax_tab), .combine=cbind) %do%{
+    tax_new = foreach (ll=1:ncol(tax_tab), .combine=cbind) %dopar%{
       y = as.numeric( tax_tab[, ll] )
       ConQuR_each(y=y, X=X, X_span=X_span, X_correct=X_correct, X_span_correct=X_span_correct, batch_ref=batch_ref,
                   delta=delta, taus=taus, logistic_lasso=logistic_lasso, quantile_type=quantile_type, lambda_quantile=lambda_quantile, interplt=interplt)
