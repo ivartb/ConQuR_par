@@ -90,7 +90,7 @@ ConQuR <- function(tax_tab, batchid, covariates,
     ### correct each of the taxa ###
     tax_new = foreach (ll=1:ncol(tax_tab), .combine=cbind) %dopar%{
       y = as.numeric( tax_tab[, ll] )
-      ConQuR_each(y=y, X=X, X_span=X_span, X_correct=X_correct, X_span_correct=X_span_correct, batch_ref=batch_ref,
+      ConQuR_each(y=y, X=X, X_span=X_span, X_correct=X_correct, X_span_correct=X_span_correct, batch_ref=batch_ref, batchid=batchid,
                   delta=delta, taus=taus, logistic_lasso=logistic_lasso, quantile_type=quantile_type, lambda_quantile=lambda_quantile, interplt=interplt)
     }
 

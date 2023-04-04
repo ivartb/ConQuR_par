@@ -105,7 +105,7 @@ simple_QQ <- function(y, batchid, batch_ref, taus){
 
 ### ConQuR for each taxon
 
-ConQuR_each <- function(y, X, X_span, X_correct, X_span_correct, batch_ref=batch_ref,
+ConQuR_each <- function(y, X, X_span, X_correct, X_span_correct, batch_ref=batch_ref, batchid=batchid,
                         delta, taus, logistic_lasso, quantile_type, lambda_quantile, interplt, logistic_thres=8){
 
   to_skip <<- F
